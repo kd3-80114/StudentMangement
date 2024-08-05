@@ -1,0 +1,10 @@
+package com.app.dto;
+
+public class StudentReqDetailsDTO {
+	private String email;
+	private String firstName;
+	private String lastName;
+	private String password;
+	private String contact_no;
+	
+	}

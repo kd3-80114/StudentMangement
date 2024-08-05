@@ -1,0 +1,9 @@
+package com.app.service;
+
+import com.app.dto.StudentReqDetailsDTO;
+
+public interface AdminService {
+
+	Object createStudent(StudentReqDetailsDTO dto);
+
+}

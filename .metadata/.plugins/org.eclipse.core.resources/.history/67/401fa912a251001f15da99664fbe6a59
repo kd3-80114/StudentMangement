@@ -1,0 +1,16 @@
+package com.app.entities;
+
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+@Entity
+public class Subjects extends BaseEntity{
+	 private Long id;
+
+	    private String name;
+
+	    @ManyToMany(mappedBy = "subjects")
+	    private Set<Student> students;
+}

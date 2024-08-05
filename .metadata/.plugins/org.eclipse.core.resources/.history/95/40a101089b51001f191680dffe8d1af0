@@ -1,0 +1,13 @@
+package com.app.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
+public class Student extends BaseEntity{
+	@Column(length = 30)
+	private String name;
+	@Column(length =100)
+	private String address;
+
+}

@@ -1,0 +1,15 @@
+package com.app.service;
+
+import com.app.dto.StudentReqDetailsDTO;
+
+public class AdminServiceImpl implements AdminService{
+
+	@Override
+	public Object createStudent(StudentReqDetailsDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}

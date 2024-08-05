@@ -1,0 +1,9 @@
+package com.app.service;
+
+import com.app.dto.Signup;
+import com.app.dto.StudentReqDetailsDTO;
+
+public interface UserService {
+//sign up
+	String studentRegistration(StudentReqDetailsDTO dto);
+}

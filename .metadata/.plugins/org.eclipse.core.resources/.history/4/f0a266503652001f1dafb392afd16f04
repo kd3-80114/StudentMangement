@@ -1,0 +1,16 @@
+package com.app.service;
+
+import java.util.List;
+
+import com.app.dto.StudentListResponseDto;
+
+public interface AdminService {
+
+
+	List<StudentListResponseDto> getAllStudents();
+
+	List<String> getAllSubjects();
+
+	String addSubject();
+
+}

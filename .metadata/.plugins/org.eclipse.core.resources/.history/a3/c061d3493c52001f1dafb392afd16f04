@@ -1,0 +1,80 @@
+package com.app.utils;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+
+@Component
+public class DataBaseInitalization {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void initializeDatabase() {
+        if (databaseExists() && tablesExist()) {
+            if (!checkIfAdminExists()) {
+                createAdmin();
+            }
+        } else {
+            System.out.println("Database or required tables do not exist. Initialization skipped.");
+        }
+    }
+
+    private boolean databaseExists() {
+        try (Connection connection = dataSource.getConnection()) {
+            return connection.isValid(2);
+        } catch (Exception e) {
+            System.out.println("Database does not exist or cannot be reached.");
+            return false;
+        }
+    }
+
+    private boolean tablesExist() {
+        try (Connection connection = dataSource.getConnection()) {
+            DatabaseMetaData metaData = connection.getMetaData();
+            
+            try (ResultSet resultSet = metaData.getTables(null, null, "sign_in", null)) {
+                if (resultSet.next()) {
+                    return true;
+                }
+            }
+            
+            try (ResultSet resultSet = metaData.getTables(null, null, "admin", null)) {
+                if (resultSet.next()) {
+                    return true;
+                }
+            }
+            
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error checking tables existence: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private void createAdmin() {
+        jdbcTemplate.execute(
+                "INSERT INTO studentmanagement.sign_in (id,email,password,user_role) VALUES (1,'patelshrinit@gmail.com','$2a$10$nAqY2tdqotLPgvF1DKf.uOfgpY0mpgFwtk3Bloc5mZpx7MYZMMQea','ROLE_ADMIN')");
+        
+        jdbcTemplate.execute(
+                "INSERT INTO studentmanagement.admin (contact_no,email,fname,lname,password,sign_in) VALUES ('9730808232','patelshrinit@gmail.com','shrinit','patel','$2a$10$nAqY2tdqotLPgvF1DKf.uOfgpY0mpgFwtk3Bloc5mZpx7MYZMMQea',1)");
+    }
+
+    private boolean checkIfAdminExists() {
+        Integer count = jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM studentmanagement.admin",
+                Integer.class);
+        return count != null && count > 0;
+    }
+}

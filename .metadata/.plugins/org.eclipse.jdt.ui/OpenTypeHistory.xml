@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=StudentManagementSystem/C:\/Users\/shrinit\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/2.7.18\/spring-data-jpa-2.7.18.jar=/maven.pomderived=/true=/=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/2.7.18=/=/maven.scope=/compile=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1703992686327"/>
+    <typeInfo handle="=StudentManagementSystem/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.dao{StudentDao.java[StudentDao" modifiers="513" timestamp="1722698730289"/>
+    <typeInfo handle="=StudentManagementSystem/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.service{StudentService.java[StudentService" modifiers="513" timestamp="1722700837643"/>
+</typeInfoHistroy>

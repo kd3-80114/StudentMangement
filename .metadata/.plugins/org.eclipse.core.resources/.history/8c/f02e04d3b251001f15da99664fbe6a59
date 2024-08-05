@@ -1,0 +1,34 @@
+package com.app.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.app.dao.SignInDao;
+import com.app.dao.StudentDao;
+import com.app.dto.StudentReqDetailsDTO;
+import com.app.entities.Student;
+
+public class AdminServiceImpl implements AdminService{
+
+	@Autowired
+	private StudentDao studentDao;
+	private SignInDao signDao;
+	private Student student;
+	private PasswordEncoder passwordEncoder;
+	
+	@Override
+	public Object createStudent(StudentReqDetailsDTO dto) {
+		student=new Student();
+		student.setFirstName(dto.getFirstName());
+		student.setLastName(dto.getLastName());
+		student.setEmail(dto.getEmail());
+		student.setPassword(passwordEncoder.encode(dto.getPassword()));
+		student.setContactNo(dto.getContactNo());
+		
+		
+		
+	}
+	
+	
+
+}
